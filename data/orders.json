@@ -1,0 +1,31 @@
+[
+  {
+    "_id": "order_1733394180966",
+    "orderNumber": "ORD-1733394161952",
+    "orderDate": "2024-12-05",
+    "clientName": "mercedes",
+    "contactPerson": "aaa",
+    "email": "tilak@mercedes.com",
+    "phone": "12345678",
+    "quotationId": "1733394145725",
+    "items": [
+      {
+        "description": "aaaa",
+        "quantity": 1,
+        "unitPrice": 500000,
+        "total": 500000
+      },
+      {
+        "description": "aaaaa",
+        "quantity": 1,
+        "unitPrice": 250,
+        "total": 250
+      }
+    ],
+    "subtotal": 500250,
+    "gst": 90045,
+    "total": 590295,
+    "status": "Pending",
+    "createdAt": "2024-12-05T10:23:00.966Z"
+  }
+]

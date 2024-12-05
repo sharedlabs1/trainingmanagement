@@ -1,0 +1,65 @@
+[
+  {
+    "id": "1733311847100",
+    "clientName": "Mercedes",
+    "trainingType": "Online",
+    "startDate": "2024-12-16",
+    "endDate": "2024-12-26",
+    "trainer": "Niranjan",
+    "trainerEmail": "niranjan6576@gmail.com",
+    "costs": {
+      "trainerPerDay": 20000,
+      "labPerDay": 1500,
+      "platformPerDay": 250
+    },
+    "prices": {
+      "trainerPerDay": 30000,
+      "labPerDay": 2000,
+      "platformPerDay": 400
+    },
+    "status": "Confirmed",
+    "createdAt": "2024-12-04T11:30:47.100Z"
+  },
+  {
+    "id": "1733311915885",
+    "clientName": "MERCEDES",
+    "trainingType": "Online",
+    "startDate": "2024-12-24",
+    "endDate": "2024-12-25",
+    "trainer": "NIRANJAN",
+    "trainerEmail": "niranjan6576@gmail.com",
+    "costs": {
+      "trainerPerDay": 1500,
+      "labPerDay": 1000,
+      "platformPerDay": 350
+    },
+    "prices": {
+      "trainerPerDay": 1000,
+      "labPerDay": 700,
+      "platformPerDay": 300
+    },
+    "status": "Confirmed",
+    "createdAt": "2024-12-04T11:31:55.885Z"
+  },
+  {
+    "id": "1733312205444",
+    "clientName": "MERCEDES",
+    "trainingType": "Online",
+    "startDate": "2024-12-25",
+    "endDate": "2024-12-26",
+    "trainer": "Amit",
+    "trainerEmail": "amit@gmail.com",
+    "costs": {
+      "trainerPerDay": 4000,
+      "labPerDay": 2000,
+      "platformPerDay": 300
+    },
+    "prices": {
+      "trainerPerDay": 4500,
+      "labPerDay": 2000,
+      "platformPerDay": 200
+    },
+    "status": "Confirmed",
+    "createdAt": "2024-12-04T11:36:45.444Z"
+  }
+]

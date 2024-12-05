@@ -1,0 +1,97 @@
+[
+  {
+    "_id": "1733316092601",
+    "date": "2024-12-04T12:41:32.540Z",
+    "clientCompany": "mercedes",
+    "contactPerson": "xxx",
+    "email": "xxx@gmail.com",
+    "phone": "12345",
+    "courseName": "java and python",
+    "participants": 60,
+    "duration": 10,
+    "pricePerDay": 35000,
+    "notes": "",
+    "status": "Rejected",
+    "totalValue": 350000,
+    "createdAt": "2024-12-04T12:41:32.601Z"
+  },
+  {
+    "_id": "1733370979726",
+    "clientName": "mercedes",
+    "date": "2024-12-05",
+    "validity": 30,
+    "items": [
+      {
+        "type": "trainer",
+        "description": "aaa",
+        "total": 0,
+        "itemtypecost": 5000,
+        "itemtypedays": 5
+      },
+      {
+        "type": "assessment_no_proctor",
+        "description": "aaa",
+        "total": 0,
+        "itemtypequantity": 100,
+        "itemtypecost": 200
+      }
+    ],
+    "subtotal": 0,
+    "gst": 0,
+    "total": 0,
+    "status": "Pending",
+    "quotationNumber": "QT-1733370844598-155",
+    "createdAt": "2024-12-05T03:56:19.726Z"
+  },
+  {
+    "_id": "1733371185080",
+    "quotationNumber": "QT-1733371126752-919",
+    "date": "2024-12-06",
+    "clientName": "mercedes",
+    "contactPerson": "tilak",
+    "email": "tilak@mercedes.com",
+    "phone": "12345678",
+    "items": [
+      {
+        "type": "Trainer Cost",
+        "description": "aaa",
+        "cost": 2000,
+        "quantity": 5,
+        "total": 10000
+      }
+    ],
+    "subtotal": 10000,
+    "gst": 1800,
+    "total": 11800,
+    "createdAt": "2024-12-05T03:59:45.080Z"
+  },
+  {
+    "_id": "1733394145725",
+    "quotationNumber": "QT-1733394080089",
+    "date": "2024-12-05",
+    "clientName": "mercedes",
+    "contactPerson": "qqqq",
+    "email": "abc@gmail.com",
+    "phone": "234",
+    "items": [
+      {
+        "type": "Trainer Cost",
+        "description": "aaaa",
+        "cost": 50000,
+        "quantity": 10,
+        "total": 500000
+      },
+      {
+        "type": "Assessment without Proctoring",
+        "description": "aaaaa",
+        "cost": 250,
+        "quantity": 1,
+        "total": 250
+      }
+    ],
+    "subtotal": 500250,
+    "gst": 90045,
+    "total": 590295,
+    "createdAt": "2024-12-05T10:22:25.725Z"
+  }
+]

@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Training Management System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container-fluid">
+            <span class="navbar-brand mb-0 h1">Training Management System</span>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Left Navigation -->
+            <nav class="col-md-2 d-md-block bg-light sidebar">
+                <div class="sidebar-sticky pt-3">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#" data-page="dashboard">
+                                <i class="bi bi-speedometer2"></i> Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" data-page="leads">
+                                <i class="bi bi-person-lines-fill"></i> Leads
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" data-page="quotations">
+                                <i class="bi bi-file-earmark-text"></i> Quotations
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" data-page="orders">
+                                <i class="bi bi-cart-check"></i> Orders
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" data-page="trainers">
+                                <i class="bi bi-person-workspace"></i> Trainers
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" data-page="reports">
+                                <i class="bi bi-graph-up"></i> Reports
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <!-- Main Content Area -->
+            <main class="col-md-10 ms-sm-auto px-md-4">
+                <!-- Dashboard Page -->
+                <div id="dashboardPage" class="content-page">
+                    <h1>Dashboard</h1>
+                    <!-- Dashboard content here -->
+                </div>
+
+                <!-- Leads Page -->
+                <div id="leadsPage" class="content-page" style="display: none;">
+                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                        <h1 class="h2">Lead Management</h1>
+                        <button class="btn btn-primary" id="newLeadBtn">
+                            <i class="bi bi-plus-lg"></i> New Lead
+                        </button>
+                    </div>
+
+                    <!-- Lead Form -->
+                    <div class="card mb-4" id="leadFormCard" style="display: none;">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0">Create New Lead</h5>
+                        </div>
+                        <div class="card-body">
+                            <form id="leadForm">
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Lead Number</label>
+                                        <input type="text" class="form-control" id="leadNumber" name="leadNumber" readonly>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Date</label>
+                                        <input type="date" class="form-control" name="date" required>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Company Name</label>
+                                        <input type="text" class="form-control" name="companyName" required>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Contact Person</label>
+                                        <input type="text" class="form-control" name="contactPerson" required>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Email</label>
+                                        <input type="email" class="form-control" name="email" required>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Phone</label>
+                                        <input type="tel" class="form-control" name="phone" required>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Training Course</label>
+                                        <input type="text" class="form-control" name="course" required>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Number of Participants</label>
+                                        <input type="number" class="form-control" name="participants" min="1" required>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 mb-3">
+                                        <label class="form-label">Requirements</label>
+                                        <textarea class="form-control" name="requirements" rows="3"></textarea>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 text-end">
+                                        <button type="button" class="btn btn-secondary me-2" id="cancelLead">Cancel</button>
+                                        <button type="submit" class="btn btn-primary">Create Lead</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Leads List -->
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Lead ID</th>
+                                    <th>Date</th>
+                                    <th>Company</th>
+                                    <th>Course</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="leadsTableBody">
+                                <!-- Leads will be populated here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Quotations Page -->
+                <div id="quotationsPage" class="content-page" style="display: none;">
+                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                        <h1 class="h2">Quotations</h1>
+                        <div>
+                            <button class="btn btn-secondary me-2" onclick="showProfitCalculator()">
+                                <i class="bi bi-calculator"></i> Profit Calculator
+                            </button>
+                            <button class="btn btn-primary" onclick="showQuotationForm()">
+                                <i class="bi bi-plus-lg"></i> New Quotation
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Profit Calculator Modal -->
+                    <div class="modal fade" id="profitCalculatorModal" tabindex="-1">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Profit Calculator</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="mb-3">
+                                        <label class="form-label">Select Quotation</label>
+                                        <select class="form-select" id="profitQuotationSelect">
+                                            <option value="">Select a quotation...</option>
+                                        </select>
+                                    </div>
+
+                                    <div id="profitDetails" style="display: none;">
+                                        <!-- Items Breakdown -->
+                                        <div id="profitItems" class="mb-4">
+                                            <!-- Items will be populated here -->
+                                        </div>
+
+                                        <!-- Summary Card -->
+                                        <div class="card mb-3">
+                                            <div class="card-header">
+                                                <h6 class="mb-0">Financial Summary</h6>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <p class="mb-2">
+                                                            <span class="text-muted">Total Cost:</span>
+                                                            <span class="float-end" id="totalCost">₹0.00</span>
+                                                        </p>
+                                                        <p class="mb-2">
+                                                            <span class="text-muted">Total Price:</span>
+                                                            <span class="float-end" id="totalPrice">₹0.00</span>
+                                                        </p>
+                                                        <p class="mb-2">
+                                                            <span class="text-muted">GST (18%):</span>
+                                                            <span class="float-end" id="profitGst">₹0.00</span>
+                                                        </p>
+                                                        <p class="mb-2">
+                                                            <span class="text-muted">Total with GST:</span>
+                                                            <span class="float-end" id="totalPriceGst">₹0.00</span>
+                                                        </p>
+                                                        <p class="mb-0">
+                                                            <span class="text-muted">Total Profit:</span>
+                                                            <span class="float-end text-success" id="totalProfit">₹0.00</span>
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <p class="mb-2">
+                                                            <span class="text-muted">Profit Margin:</span>
+                                                            <span class="float-end" id="profitMargin">0.0%</span>
+                                                        </p>
+                                                        <p class="mb-2">
+                                                            <span class="text-muted">Markup Percentage:</span>
+                                                            <span class="float-end" id="markupPercentage">0.0%</span>
+                                                        </p>
+                                                        <div class="mt-3">
+                                                            <label class="form-label text-muted small">Profit Health</label>
+                                                            <div class="progress">
+                                                                <div id="profitProgressBar" class="progress-bar" role="progressbar" style="width: 0%"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quotation Form -->
+                    <div class="card mb-4" id="quotationFormCard" style="display: none;">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0">Create New Quotation</h5>
+                        </div>
+                        <div class="card-body">
+                            <form id="quotationForm">
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Quotation Number</label>
+                                        <input type="text" class="form-control" id="quotationNumber" name="quotationNumber" readonly>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Date</label>
+                                        <input type="date" class="form-control" name="date" required>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Client Name</label>
+                                        <input type="text" class="form-control" name="clientName" required>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Contact Person</label>
+                                        <input type="text" class="form-control" name="contactPerson" required>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Email</label>
+                                        <input type="email" class="form-control" name="email" required>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Phone</label>
+                                        <input type="tel" class="form-control" name="phone" required>
+                                    </div>
+                                </div>
+
+                                <!-- Cost Items Section -->
+                                <div class="card mt-4 mb-4">
+                                    <div class="card-header d-flex justify-content-between align-items-center">
+                                        <h6 class="mb-0">Cost Items</h6>
+                                        <button type="button" class="btn btn-sm btn-primary" id="addItemBtn">
+                                            <i class="bi bi-plus-lg"></i> Add Item
+                                        </button>
+                                    </div>
+                                    <div class="card-body">
+                                        <div id="costItems">
+                                            <!-- Items will be added here dynamically -->
+                                        </div>
+                                        <div class="row mt-3">
+                                            <div class="col-md-8 offset-md-4">
+                                                <div class="mb-2">
+                                                    <strong>Subtotal:</strong> <span id="quotationSubtotal">₹0.00</span>
+                                                </div>
+                                                <div class="mb-2">
+                                                    <strong>GST (18%):</strong> <span id="quotationGST">₹0.00</span>
+                                                </div>
+                                                <div>
+                                                    <strong>Total:</strong> <span id="quotationTotal">₹0.00</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12 mb-3">
+                                        <label class="form-label">Items</label>
+                                        <div id="quotationItems">
+                                            <!-- Items will be added here -->
+                                        </div>
+                                        <button type="button" class="btn btn-secondary mt-2" onclick="addQuotationItem()">
+                                            <i class="bi bi-plus"></i> Add Item
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Calculations Section -->
+                                <div class="row mt-3">
+                                    <div class="col-md-6 offset-md-6">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="d-flex justify-content-between mb-2">
+                                                    <span>Subtotal:</span>
+                                                    <span id="subtotal">$0.00</span>
+                                                </div>
+                                                <div class="d-flex justify-content-between mb-2">
+                                                    <span>GST (18%):</span>
+                                                    <span id="gst">$0.00</span>
+                                                </div>
+                                                <hr>
+                                                <div class="d-flex justify-content-between fw-bold">
+                                                    <span>Total:</span>
+                                                    <span id="total">$0.00</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Validity (Days)</label>
+                                        <input type="number" class="form-control" name="validity" required>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Payment Terms</label>
+                                        <select class="form-select" name="paymentTerms" required>
+                                            <option value="">Select Terms</option>
+                                            <option value="Advance">100% Advance</option>
+                                            <option value="50-50">50% Advance, 50% Before Delivery</option>
+                                            <option value="Net30">Net 30 Days</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-12 mb-3">
+                                        <label class="form-label">Notes</label>
+                                        <textarea class="form-control" name="notes" rows="3"></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-12 text-end">
+                                        <button type="button" class="btn btn-secondary me-2" id="cancelQuotation">Cancel</button>
+                                        <button type="submit" class="btn btn-primary">Create Quotation</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Quotations List -->
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Client</th>
+                                    <th>Course</th>
+                                    <th>Value</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="quotationsList">
+                                <!-- Quotations will be populated here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div id="trainingPage" class="content-page">
+                    <div class="container mt-4">
+                        <!-- Training Form -->
+                        <div class="card mb-4">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <h5 class="card-title mb-0">New Training Registration</h5>
+                                <button class="btn btn-sm btn-outline-primary" id="toggleForm">
+                                    <i class="bi bi-plus-lg"></i> Add New Training
+                                </button>
+                            </div>
+                            <div class="card-body" id="formContainer" style="display: none;">
+                                <form id="trainingForm">
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">Client Name</label>
+                                            <input type="text" class="form-control" name="clientName" required>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">Training Type</label>
+                                            <select class="form-select" name="trainingType" required>
+                                                <option value="Online">Online</option>
+                                                <option value="Classroom">Classroom</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">Start Date</label>
+                                            <input type="date" class="form-control" name="startDate" required>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">End Date</label>
+                                            <input type="date" class="form-control" name="endDate" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">Trainer Name</label>
+                                            <input type="text" class="form-control" name="trainer" required>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">Trainer Email</label>
+                                            <input type="email" class="form-control" name="trainerEmail" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="card mb-3">
+                                        <div class="card-header bg-light">
+                                            <h6 class="mb-0">Financial Details (Per Day)</h6>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <!-- Cost Price Section -->
+                                                <div class="col-md-6">
+                                                    <h6 class="text-muted mb-3">Cost Price</h6>
+                                                    <div class="row g-3">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label">Trainer Cost</label>
+                                                            <div class="input-group">
+                                                                <span class="input-group-text">$</span>
+                                                                <input type="number" class="form-control" name="trainerCost" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label class="form-label">Lab Cost</label>
+                                                            <div class="input-group">
+                                                                <span class="input-group-text">$</span>
+                                                                <input type="number" class="form-control" name="labCost" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label class="form-label">Platform Cost</label>
+                                                            <div class="input-group">
+                                                                <span class="input-group-text">$</span>
+                                                                <input type="number" class="form-control" name="platformCost" required>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- Sales Price Section -->
+                                                <div class="col-md-6">
+                                                    <h6 class="text-muted mb-3">Sales Price</h6>
+                                                    <div class="row g-3">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label">Trainer Price</label>
+                                                            <div class="input-group">
+                                                                <span class="input-group-text">$</span>
+                                                                <input type="number" class="form-control" name="trainerPrice" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label class="form-label">Lab Price</label>
+                                                            <div class="input-group">
+                                                                <span class="input-group-text">$</span>
+                                                                <input type="number" class="form-control" name="labPrice" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label class="form-label">Platform Price</label>
+                                                            <div class="input-group">
+                                                                <span class="input-group-text">$</span>
+                                                                <input type="number" class="form-control" name="platformPrice" required>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="text-end">
+                                        <button type="button" class="btn btn-secondary me-2" onclick="resetForm()">Reset</button>
+                                        <button type="submit" class="btn btn-primary">Submit Training</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <!-- Training Dashboard -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title mb-0">Training Dashboard</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Client</th>
+                                                <th>Type</th>
+                                                <th>Dates</th>
+                                                <th>Trainer</th>
+                                                <th>Status</th>
+                                                <th>Total Cost</th>
+                                                <th>Total Price</th>
+                                                <th>Profit</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="trainingsTable">
+                                            <!-- Trainings will be inserted here -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Training Details Modal -->
+                        <div class="modal fade" id="trainingModal" tabindex="-1">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Training Details</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                    </div>
+                                    <div class="modal-body" id="trainingModalBody">
+                                        <!-- Training details will be inserted here -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Trainers Page -->
+                <div id="trainersPage" class="content-page" style="display: none;">
+                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                        <h1 class="h2">Trainers</h1>
+                        <button class="btn btn-primary" onclick="showTrainerForm()">
+                            <i class="bi bi-plus-lg"></i> Add Trainer
+                        </button>
+                    </div>
+
+                    <!-- Trainer Form -->
+                    <div class="card mb-4" id="trainerFormCard" style="display: none;">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0">Add New Trainer</h5>
+                        </div>
+                        <div class="card-body">
+                            <form id="trainerForm">
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Name</label>
+                                        <input type="text" class="form-control" name="name" required>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Email</label>
+                                        <input type="email" class="form-control" name="email" required>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Phone</label>
+                                        <input type="tel" class="form-control" name="phone" required>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Expertise</label>
+                                        <input type="text" class="form-control" name="expertise" required>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Daily Rate</label>
+                                        <input type="number" class="form-control" name="dailyRate" required>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Status</label>
+                                        <select class="form-select" name="status" required>
+                                            <option value="Active">Active</option>
+                                            <option value="Inactive">Inactive</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 mb-3">
+                                        <label class="form-label">Notes</label>
+                                        <textarea class="form-control" name="notes" rows="3"></textarea>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 text-end">
+                                        <button type="button" class="btn btn-secondary me-2" onclick="hideTrainerForm()">Cancel</button>
+                                        <button type="submit" class="btn btn-primary">Save Trainer</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Trainers List -->
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Expertise</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Daily Rate</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="trainersTableBody">
+                                <!-- Trainers will be populated here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div id="ordersPage" class="content-page" style="display: none;">
+                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                        <h1 class="h2">Orders</h1>
+                        <button class="btn btn-primary" onclick="showOrderForm()">
+                            <i class="bi bi-plus-lg"></i> New Order
+                        </button>
+                    </div>
+
+                    <!-- Order Form -->
+                    <div class="card mb-4" id="orderFormCard" style="display: none;">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0">Create New Order</h5>
+                        </div>
+                        <div class="card-body">
+                            <form id="orderForm">
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Order Number</label>
+                                        <input type="text" class="form-control" id="orderNumber" name="orderNumber" readonly>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Order Date</label>
+                                        <input type="date" class="form-control" name="orderDate" required>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Client Name</label>
+                                        <input type="text" class="form-control" name="clientName" required>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Contact Person</label>
+                                        <input type="text" class="form-control" name="contactPerson" required>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Email</label>
+                                        <input type="email" class="form-control" name="email" required>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Phone</label>
+                                        <input type="tel" class="form-control" name="phone" required>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12 mb-3">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="hasQuotation" name="hasQuotation">
+                                            <label class="form-check-label" for="hasQuotation">
+                                                Link to Existing Quotation
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="quotationSection" style="display: none;">
+                                    <div class="row">
+                                        <div class="col-md-12 mb-3">
+                                            <label class="form-label">Select Quotation</label>
+                                            <select class="form-select" name="quotationId" id="quotationSelect">
+                                                <option value="">Select a quotation...</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div id="quotationDetails" class="alert alert-info" style="display: none;">
+                                        <!-- Quotation details will be shown here -->
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12 mb-3">
+                                        <label class="form-label">Order Items</label>
+                                        <div id="orderItems">
+                                            <!-- Order items will be added here -->
+                                        </div>
+                                        <button type="button" class="btn btn-secondary mt-2" onclick="addOrderItem()">
+                                            <i class="bi bi-plus"></i> Add Item
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-3">
+                                    <div class="col-md-6 offset-md-6">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="d-flex justify-content-between mb-2">
+                                                    <span>Subtotal:</span>
+                                                    <span id="orderSubtotal">$0.00</span>
+                                                </div>
+                                                <div class="d-flex justify-content-between mb-2">
+                                                    <span>GST (18%):</span>
+                                                    <span id="orderGst">$0.00</span>
+                                                </div>
+                                                <hr>
+                                                <div class="d-flex justify-content-between fw-bold">
+                                                    <span>Total:</span>
+                                                    <span id="orderTotal">$0.00</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-3">
+                                    <div class="col-12 text-end">
+                                        <button type="button" class="btn btn-secondary me-2" onclick="hideOrderForm()">Cancel</button>
+                                        <button type="submit" class="btn btn-primary">Create Order</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Orders List -->
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Order Number</th>
+                                    <th>Date</th>
+                                    <th>Client</th>
+                                    <th>Quotation Ref</th>
+                                    <th>Total</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="ordersTableBody">
+                                <!-- Orders will be populated here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div id="reportsPage" class="content-page" style="display: none;">
+                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                        <h1 class="h2">Reports</h1>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <div class="card">
+                                <div class="card-header">
+                                    Monthly Business Progress
+                                </div>
+                                <div class="card-body">
+                                    <canvas id="monthlyProgressChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="card">
+                                <div class="card-header">
+                                    Lead Conversion Rate
+                                </div>
+                                <div class="card-body">
+                                    <canvas id="leadConversionChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quotation Edit History Modal -->
+                <div class="modal fade" id="quotationHistoryModal" tabindex="-1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Edit History</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div id="editHistoryList" class="list-group">
+                                    <!-- Edit history will be populated here -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Trainer PO Modal -->
+                <div class="modal fade" id="trainerPoModal" tabindex="-1">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Generate Purchase Order</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="trainerPoForm">
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">PO Number</label>
+                                            <input type="text" class="form-control" id="poNumber" readonly>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">Date</label>
+                                            <input type="date" class="form-control" name="poDate" required>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">Training Order</label>
+                                            <select class="form-select" name="orderId" required>
+                                                <option value="">Select order...</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">Trainer</label>
+                                            <select class="form-select" name="trainerId" required>
+                                                <option value="">Select trainer...</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4 mb-3">
+                                            <label class="form-label">Start Date</label>
+                                            <input type="date" class="form-control" name="startDate" required>
+                                        </div>
+                                        <div class="col-md-4 mb-3">
+                                            <label class="form-label">End Date</label>
+                                            <input type="date" class="form-control" name="endDate" required>
+                                        </div>
+                                        <div class="col-md-4 mb-3">
+                                            <label class="form-label">Daily Rate</label>
+                                            <input type="number" class="form-control" name="dailyRate" required>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12 mb-3">
+                                            <label class="form-label">Notes</label>
+                                            <textarea class="form-control" name="notes" rows="3"></textarea>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" onclick="generateAndSendPO()">Generate & Send PO</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

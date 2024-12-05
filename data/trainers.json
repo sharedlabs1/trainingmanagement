@@ -1,0 +1,13 @@
+[
+  {
+    "_id": "1733372680064",
+    "name": "niranjan",
+    "email": "niranjan@learnlytica.com",
+    "phone": "9731149585",
+    "expertise": "data analytics",
+    "dailyRate": 50000,
+    "status": "Active",
+    "notes": "good feedback",
+    "createdAt": "2024-12-05T04:24:40.065Z"
+  }
+]

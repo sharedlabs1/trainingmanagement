@@ -1,0 +1,16 @@
+[
+  {
+    "_id": "1733394067912",
+    "leadNumber": "LD-1733378616019-389",
+    "date": "2024-12-12",
+    "companyName": "mercedes",
+    "contactPerson": "xxx",
+    "email": "xxx@gmail.com",
+    "phone": "12345",
+    "course": "java and python",
+    "participants": 50,
+    "requirements": "java and python",
+    "status": "New",
+    "createdAt": "2024-12-05T10:21:07.913Z"
+  }
+]
